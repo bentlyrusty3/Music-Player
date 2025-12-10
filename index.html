@@ -10,7 +10,7 @@
     <h2 class="logo">🎧 Music Player</h2>
     <div class="card">
         <div class="cover"></div>
-        <h3 id="trackName" class="track-title">Track Name</h3>
+        <h3 id="trackName" class="track-title"></h3>
         <audio id="audio"></audio>
         <div class="controls">
             <button id="prev" class="btn control">⏮</button>
@@ -25,6 +25,12 @@
         <div class="volume">
             🔊 <input id="volume" type="range" min="0" max="1" step="0.01" value="0.5">
         </div>
+    </div>
+    <button id="toggleAddBox" class="add-track-btn">➕ Add New Track</button>
+    <div id="addBox" class="add-box hidden">
+        <input type="text" id="newTrackName" placeholder="Track Name">
+        <input type="text" id="newTrackUrl" placeholder="Track URL">
+        <button id="addTrackBtn" class="submit-btn">Add</button>
     </div>
     <h3 class="list-title">Playlist</h3>
     <div id="playlist" class="playlist"></div>

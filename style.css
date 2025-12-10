@@ -28,10 +28,10 @@ body {
 }
 .cover {
     height: 200px;
-    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    background: #006f9c;
+    background: linear-gradient(90deg,rgba(0, 111, 156, 1) 0%, rgba(8, 77, 105, 1) 50%, rgba(0, 29, 38, 1) 100%);
     border-radius: 18px;
     margin-bottom: 15px;
-    background: round;
 }
 .track-title {
     text-align: center;
@@ -79,6 +79,63 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+.add-track-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.22);
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 17px;
+    margin: 20px 0;
+    transition: 0.25s ease;
+}
+.add-track-btn:hover {
+    background: rgba(255,255,255,0.32);
+}
+.add-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(255,255,255,0.13);
+    backdrop-filter: blur(12px);
+    padding: 15px;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    max-height: 0;
+    opacity: 0;
+}
+.add-box input {
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    font-size: 15px;
+    background: none;
+    border: 1px solid white;
+    color: white;
+    outline: none;
+}
+.add-box input::placeholder {
+    color: white;
+}
+.add-box .submit-btn {
+    padding: 10px;
+    background: #28c76f;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+}
+.add-box .submit-btn:hover {
+    background: #22b764;
+}
+.add-box.show {
+    max-height: 200px;
+    opacity: 1;
 }
 .playlist {
     margin-top: 20px;

@@ -8,57 +8,32 @@ const seek = document.getElementById("seek");
 const durationElement = document.getElementById("duration");
 const volumeSlider = document.getElementById("volume");
 const playlistElement = document.getElementById("playlist");
-const cover = document.querySelector(".cover");
+const toggleAddBtn = document.getElementById("toggleAddBox");
+const addBox = document.getElementById("addBox");
+const newTrackName = document.getElementById("newTrackName");
+const newTrackUrl = document.getElementById("newTrackUrl");
+const addTrackBtn = document.getElementById("addTrackBtn");
 
-const tracks = [
-    {
-        name: "Habib - Kharchanghaye Mordab",
-        src: "https://xx.sahand-music.ir/Archive/H/Habib/Habib%20-%20Kavire%20Bavar/02%20Kharchanghaye%20Mordab.mp3",
-        cover: "https://sahand-music.ir/photos/2025/09/93029.webp"
-    },
-    {
-        name: "Mahasti - Taghsireh Toust",
-        src: "https://xx.sahand-music.ir/Archive/M/Mahasti/Mahasti%20-%20Asir/Mahasti-Taghsireh-Toust.MP3",
-        cover: "https://sahand-music.ir/photos/2000/12/15494.webp"
-    },
-    {
-        name: "Omid - Eshgho Tamanna",
-        src: "https://xx.sahand-music.ir/Archive/O/Omid/Omid%20-%20Havaye%20Azadi/02%20Eshgho%20Tamanna%20[128].mp3",
-        cover: "https://sahand-music.ir/photos/2000/6/30817.webp"
-    },
-    {
-        name: "Siavash Ghomayshi - Deltangi",
-        src: "https://xx.sahand-music.ir/Archive/S/Siavash%20Ghomayshi/Siavash%20Ghomayshi%20-%20Shokoufehaye%20Kaviri/03%20Deltangi.mp3",
-        cover: "https://sahand-music.ir/photos/2000/9/24641.webp"
-    },
-    {
-        name: "Shadmehr Aghili - Ghazi",
-        src: "https://xx.sahand-music.ir/Archive/S/Shadmehr%20Aghili/1399/Shadmehr%20Aghili%20-%20Ghazi%20128.mp3",
-        cover: "https://sahand-music.ir/photos/2000/14/13502.webp"
-    },
-    {
-        name: "Moein - Kabeh",
-        src: "https://xx.sahand-music.ir/Archive/M/Moein/Moein%20-%20Kabeh/01%20Kabeh.mp3",
-        cover: "https://sahand-music.ir/photos/2000/24/45595.webp"
-    }
-];
+let tracksArray = JSON.parse(localStorage.getItem("tracks")) || [];
 
 let currentIndex = 0;
 
-tracks.forEach((track, i) => {
-    const trackBtn = document.createElement("button");
-    trackBtn.textContent = track.name;
-    trackBtn.onclick = () => {
-        loadTrack(i);
-        playTrack();
-    }
-    playlistElement.appendChild(trackBtn);
-});
+function renderTracks() {
+    playlistElement.innerHTML = "";
+    tracksArray.forEach((track, i) => {
+        const trackBtn = document.createElement("button");
+        trackBtn.textContent = track.name;
+        trackBtn.onclick = () => {
+            loadTrack(i);
+            playTrack();
+        }
+        playlistElement.appendChild(trackBtn);
+    });
+}
 function loadTrack(index) {
     currentIndex = index;
-    audioElement.src = tracks[index].src;
-    trackName.textContent = tracks[index].name;
-    cover.style.backgroundImage = `url('${tracks[index].cover}')`;
+    audioElement.src = tracksArray[index].src;
+    trackName.textContent = tracksArray[index].name;
     seek.value = 0;
 }
 function playTrack() {
@@ -79,18 +54,12 @@ playPauseBtn.addEventListener("click", () => {
     else pauseTrack();
 });
 nextBtn.addEventListener("click", () => {
-    console.log(currentIndex);
-    console.log(currentIndex + 1);
-    console.log(tracks.length);
-    currentIndex = (currentIndex + 1) % tracks.length;
+    currentIndex = (currentIndex + 1) % tracksArray.length;
     loadTrack(currentIndex);
     playTrack();
 });
 prevBtn.addEventListener("click", () => {
-    console.log(currentIndex);
-    console.log(currentIndex - 1 + tracks.length);
-    console.log(tracks.length);
-    currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
+    currentIndex = (currentIndex - 1 + tracksArray.length) % tracksArray.length;
     loadTrack(currentIndex);
     playTrack();
 });
@@ -111,4 +80,19 @@ seek.addEventListener("input", () => {
 volumeSlider.addEventListener("input", () => {
     audioElement.volume = volumeSlider.value;
 });
-loadTrack(0);
+toggleAddBtn.addEventListener("click", () => {
+    addBox.classList.toggle("show");
+});
+addTrackBtn.addEventListener("click", () => {
+    if(newTrackName === "" && newTrackUrl === "") return;
+    const newTrack = {
+        name: newTrackName.value,
+        src: newTrackUrl.value
+    };
+    tracksArray.push(newTrack);
+    localStorage.setItem("tracks", JSON.stringify(tracksArray));
+    newTrackName.value = "";
+    newTrackUrl.value = "";
+    renderTracks();
+});
+renderTracks();
