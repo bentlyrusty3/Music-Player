@@ -101,6 +101,9 @@ audioElement.addEventListener("loadedmetadata", () => {
 audioElement.addEventListener("timeupdate", () => {
     seek.value = Math.floor(audioElement.currentTime);
     currentTimeElement.textContent = formatTime(audioElement.currentTime);
+    if(audioElement.currentTime == audioElement.duration) {
+        nextBtn.click();
+    }
 });
 seek.addEventListener("input", () => {
     audioElement.currentTime = seek.value;
