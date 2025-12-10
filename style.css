@@ -7,7 +7,6 @@ body {
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     margin: 0;
     padding: 20px;
-    direction: rtl;
 }
 .player {
     max-width: 420px;
@@ -28,10 +27,11 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 .cover {
-    height: 180px;
+    height: 200px;
     background: linear-gradient(135deg, #89f7fe, #66a6ff);
     border-radius: 18px;
     margin-bottom: 15px;
+    background: round;
 }
 .track-title {
     text-align: center;
