@@ -1,76 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600&display=swap');
+* {
+    box-sizing: border-box;
+}
 body {
-    background: #f2f2f2;
-    font-family: sans-serif;
+    font-family: 'Vazirmatn', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    margin: 0;
+    padding: 20px;
+    direction: rtl;
 }
-.container {
-    width: 500px;
-    margin: 40px auto;
+.player {
+    max-width: 420px;
+    margin: auto;
+    color: #fff;
 }
-h1 {
+.logo {
     text-align: center;
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 600;
 }
-#searchInput {
-    width: 100%;
-    padding: 10px;
-    margin: 15px 0;
-    border-radius: 8px;
-    border: 1px solid #bbb;
-    font-size: 16px;
+.card {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(14px);
+    padding: 25px;
+    border-radius: 22px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
-#noteInput {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #bbb;
-    resize: none;
-    font-size: 16px;
-}
-#addBtn {
-    background: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    font-size: 16px;
-    border-radius: 8px;
-    margin: 15px 0;
-    cursor: pointer;
-}
-#addBtn:hover {
-    background: #45a049;
-}
-.notes {
-    margin-top: 20px;
-}
-.note {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
+.cover {
+    height: 180px;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    border-radius: 18px;
     margin-bottom: 15px;
-    position: relative;
-    border-right: 5px solid #4CAF50;
 }
-.note p {
-    margin-top: 10px;
-    line-height: 1.7;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: pre-wrap;
+.track-title {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 20px;
 }
-.note small {
-    color: gray;
-    display: block;
-    margin-bottom: 10px;
-    text-align: end;
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin: 20px 0;
 }
-.deleteBtn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: red;
-    color: white;
+.btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
     border: none;
-    padding: 5px 10px;
-    border-radius: 6px;
     cursor: pointer;
-    font-size: 12px;
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    font-size: 20px;
+    color: #fff;
+    transition: 0.2s;
+}
+.btn:hover {
+    transform: scale(1.1);
+}
+.play {
+    width: 65px;
+    height: 65px;
+    font-size: 25px;
+    background: rgba(255,255,255,0.35);
+}
+.seek-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.seek-wrapper input {
+    flex: 1;
+}
+.volume {
+    margin-top: 15px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.playlist {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.playlist button {
+    padding: 12px;
+    border-radius: 14px;
+    border: none;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+.playlist button:hover {
+    background: rgba(255,255,255,0.33);
+}
+@media (max-width: 480px) {
+    .card {
+        padding: 18px;
+    }
+    .btn {
+        width: 46px;
+        height: 46px;
+    }
+    .play {
+        width: 58px;
+        height: 58px;
+    }
+    .cover {
+        height: 150px;
+    }
 }
